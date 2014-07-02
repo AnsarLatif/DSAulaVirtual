@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/base">
+
+<div  layout:fragment="content">
+    <div id="content-header">
+        <h1>Sistema de Aula Virtual</h1>
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Bienvenido al Sistema de Aula Virtual.
+                    Aqu&iacute; podr&aacute; gestionar sus cursos, trabajos, documentos y mas!
+                    <br/>
+                    Este sistema fue hecho para el curso de Dise&ntilde;o de Sistemas para el periodo
+                    2014-I con el profesor Carlos Zambrano Green.
+                    
+                    <a href="#" data-dismiss="alert" class="close">x</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload=function(){$("#sidebar>ul>li:eq(0)").addClass("active");}
+    </script>
+</div>
+</html>

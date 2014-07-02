@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aula Matrix</title>
+    <meta charset="ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-glyphicons.css}" />
+    <link rel="stylesheet" th:href="@{/css/unicorn.login.css}" />
+    <link rel="icon" type="image/png" href="../../img/icon.png" th:href="@{/img/icon.png}"/>
+</head>
+<body>
+    <div class="container">
+        <div id="logo">
+            <img th:src="@{/img/logo.png}" />
+        </div>
+        <div id="loginbox">
+            <form id="loginform" action="#" th:action="@{/login/authenticate}" method="post">
+                <p>Ingrese su usuario y/o contrase&ntilde;a</p>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input class="form-control" placeholder="Usuario" name="username" autofocus="true" />
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password" />
+                </div>
+                <div class="form-actions">
+                    <div th:if="${error} == true">
+                        <div class="pull-left">
+                            <strong style="color:#843534" th:text="${mensaje}"></strong>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <input type="submit" class="btn btn-success" value="Iniciar Sesi&oacute;n" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
