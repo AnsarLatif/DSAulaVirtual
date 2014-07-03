@@ -8,15 +8,20 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
-import com.aguilarpgc.aulamatrix.model.Usuario;
 
 @Repository
 @Transactional
 public class CursoGrupoTipoRepository extends HibernateRepository{
 	
-	public List<CursoGrupoTipo> listCursoByProfesor(Usuario usuario){
+	public List<CursoGrupoTipo> listCursoByProfesor(String usuario){
 		Criteria criteria = getSession().createCriteria(CursoGrupoTipo.class);
-		criteria.add(Restrictions.eq("idUsuario", usuario.getId()));
+		criteria.add(Restrictions.eq("idUsuario", usuario));
+		return criteria.list();
+	}
+	
+	public List<CursoGrupoTipo> listByCursoGrupo(Integer cursoGrupoId){
+		Criteria criteria = getSession().createCriteria(CursoGrupoTipo.class);
+		criteria.add(Restrictions.eq("idCursoGrupo", cursoGrupoId));
 		return criteria.list();
 	}
 

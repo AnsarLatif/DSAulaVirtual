@@ -14,8 +14,10 @@ import com.aguilarpgc.aulamatrix.logic.DocumentoLogic;
 import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.Documento;
 import com.aguilarpgc.aulamatrix.model.Nota;
+import com.aguilarpgc.aulamatrix.model.Trabajo;
 import com.aguilarpgc.aulamatrix.util.Caster;
 import com.aguilarpgc.aulamatrix.view.NotaBean;
+import com.aguilarpgc.aulamatrix.view.TrabajoBean;
 
 @Controller
 @RequestMapping(value = "admin/alumno")
@@ -54,6 +56,19 @@ public class AlumnoController {
 			notasBeans.add(notaBean);
 		}
 		modelMap.addAttribute("notas", notasBeans);
+		return "/curso/list";
+	}
+	
+	@RequestMapping(value = "/trabajos_lista", method = RequestMethod.GET)
+	public String trabajos(ModelMap modelMap){
+
+		List<TrabajoBean> trabajosBeans = new ArrayList<TrabajoBean>();
+		for(Trabajo trabajo : alumnoLogic.listTrabajos()){
+			TrabajoBean trabajoBean = Caster.trabajoModelToBean(trabajo);
+			trabajosBeans.add(trabajoBean);
+		}
+		
+		modelMap.addAttribute("trabajos", trabajosBeans);
 		return "/curso/list";
 	}
 	

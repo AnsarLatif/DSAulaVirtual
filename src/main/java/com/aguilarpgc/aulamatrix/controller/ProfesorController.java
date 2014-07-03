@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aguilarpgc.aulamatrix.logic.ProfesorLogic;
 import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
+import com.aguilarpgc.aulamatrix.model.Trabajo;
+import com.aguilarpgc.aulamatrix.util.Caster;
+import com.aguilarpgc.aulamatrix.view.TrabajoBean;
 
 
 @Controller
@@ -23,7 +26,7 @@ public class ProfesorController {
 	@RequestMapping(value = "/cursos_asignados", method = RequestMethod.GET)
 	public String listCursos (ModelMap modelMap){
 
-        List<CursoGrupoTipo> cursos = profesorLogic.listCurso();
+        List<CursoGrupoTipo> cursoGrupoTipos = profesorLogic.listCurso();
 		/*List<CursoGrupoTipoBean> cursosBeans = new ArrayList<CursoGrupoTipoBean>();
 		for(Curso curso : cursos) {
             if(curso!=null){
@@ -38,6 +41,23 @@ public class ProfesorController {
 		System.out.print("Go Map");
         modelMap.addAttribute("cursos", cursosBeans);*/
 		System.out.print("Go View");
+		return "/curso/list";
+	}
+	
+	@RequestMapping(value = "/trabajos_lista", method = RequestMethod.GET)
+	public String listTrabajos(ModelMap modelMap){
+		
+        List<Trabajo> trabajos = profesorLogic.listTrabajos();
+		List<TrabajoBean> trabajosBeans = new ArrayList<TrabajoBean>();
+		
+		for(Trabajo trabajo : trabajos){
+			TrabajoBean trabajoBean = new TrabajoBean();
+			trabajoBean = Caster.trabajoModelToBean(trabajo);
+			trabajosBeans.add(trabajoBean);
+		}
+		
+		modelMap.addAttribute("trabajos", trabajosBeans);
+
 		return "/curso/list";
 	}
 	

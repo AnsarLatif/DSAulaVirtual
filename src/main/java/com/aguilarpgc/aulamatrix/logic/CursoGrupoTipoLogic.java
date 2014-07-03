@@ -18,10 +18,7 @@ public class CursoGrupoTipoLogic {
 	public List<CursoGrupoTipo> getCursoGrupoTipo(Usuario profesor){
 
 		System.out.print("asd1");
-		return cursoGrupoTipoRepository.listCursoByProfesor(profesor);
+		return cursoGrupoTipoRepository.listCursoByProfesor(profesor.getId());
 	}
-
-
 	
 }
-

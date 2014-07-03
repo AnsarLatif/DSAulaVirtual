@@ -1,6 +1,8 @@
 package com.aguilarpgc.aulamatrix.util;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.Customer;
 import com.aguilarpgc.aulamatrix.model.Estado;
 import com.aguilarpgc.aulamatrix.model.Nota;
+import com.aguilarpgc.aulamatrix.model.Trabajo;
 import com.aguilarpgc.aulamatrix.model.Usuario;
 import com.aguilarpgc.aulamatrix.repository.BillRepository;
 import com.aguilarpgc.aulamatrix.view.BillBean;
@@ -21,6 +24,7 @@ import com.aguilarpgc.aulamatrix.view.CursoBean;
 import com.aguilarpgc.aulamatrix.view.CustomerBean;
 import com.aguilarpgc.aulamatrix.view.EstadoBean;
 import com.aguilarpgc.aulamatrix.view.NotaBean;
+import com.aguilarpgc.aulamatrix.view.TrabajoBean;
 import com.aguilarpgc.aulamatrix.view.UsuarioBean;
 
 public class Caster {
@@ -205,5 +209,21 @@ public class Caster {
 		System.out.println("2222 nota :"+nota.getId() + " "+nota.getDocumento());
 		return nota;
 	}
+	
+	public static TrabajoBean trabajoModelToBean(Trabajo model){
+		System.out.println("1111 trabajo :"+model.getId() + " "+model.getNombre());
+		TrabajoBean trabajo = new TrabajoBean();
+		trabajo.setId(model.getId());
+		trabajo.setFechaMax(Formatter.stringToDate(model.getFechaMaxima()));
+		trabajo.setNombre(model.getNombre());
+		trabajo.setIntegrantesMax(model.getIntegrantesMaximo());
+		trabajo.setRuta(model.getRuta());
+		trabajo.setTipo(model.getTipo());
+		trabajo.setCursoGrupoTipoId(model.getIdCursoGrupoTipo());
+
+		System.out.println("2222 trabajo :"+trabajo.getId() + " "+ trabajo.getNombre());
+		return trabajo;
+	}
+	
 	
 }
