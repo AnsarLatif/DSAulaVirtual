@@ -7,12 +7,16 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aguilarpgc.aulamatrix.model.CursoGrupo;
 import com.aguilarpgc.aulamatrix.model.Matricula;
 
 @Repository
 @Transactional
 public class MatriculaRepository extends HibernateRepository{
+	
+	public void addOrUpdateMatricula(Matricula matricula){
+        System.out.println("Guardando matricula ....");
+        getSession().saveOrUpdate(matricula);
+	}
 	
 	public Matricula getMatricula(Integer id){
 		return (Matricula) getSession().get(Matricula.class, id);

@@ -3,7 +3,6 @@ package com.aguilarpgc.aulamatrix.logic;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
@@ -21,11 +20,9 @@ public class ProfesorLogic {
 	CursoGrupoTipoRepository cursoGrupoTipoRepository;
 	
 	public List<CursoGrupoTipo> listCurso(){
-        String usuarioName = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario profesor = usuarioRepository.getCurrentUser();
         
         List<CursoGrupoTipo> lista = cursoGrupoTipoRepository.listCursoByProfesor(profesor);
-        System.out.println("Profesor :"+profesor.getId()+" "+profesor.getNombre());
 
         
         for(CursoGrupoTipo cgt : lista){
@@ -33,6 +30,17 @@ public class ProfesorLogic {
         }
         
 		return lista;
+	}
+	
+	public Boolean isAsignado(CursoGrupoTipo token){
+		Boolean asignado = false;
+		
+		for(CursoGrupoTipo cursoGrupoTipo : listCurso()){
+			if(token.getId() == cursoGrupoTipo.getId())
+				asignado = true;
+		}
+		
+		return asignado;
 	}
 	
 }

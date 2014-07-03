@@ -47,4 +47,15 @@ public class AlumnoLogic {
 		return cursosList;
 	}
 	
+	public Boolean isMatriculado(Curso token){
+		
+		Boolean matriculado = false;
+		for(Curso curso : listCursosMatriculados()){
+			if(token.getId() == curso.getId())
+				matriculado = true;
+		}
+		
+		return matriculado;
+	}
+	
 }

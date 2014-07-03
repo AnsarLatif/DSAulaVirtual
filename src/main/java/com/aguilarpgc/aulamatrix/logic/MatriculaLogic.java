@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aguilarpgc.aulamatrix.model.Bill;
-import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.Matricula;
 import com.aguilarpgc.aulamatrix.repository.MatriculaRepository;
 
@@ -22,6 +20,12 @@ public class MatriculaLogic {
 
 		
 	}*/
+	
+	public void addMatricula(Matricula matricula){
+		
+		
+		matriculaRepository.addOrUpdateMatricula(matricula);
+	}
 	
 	public List<Matricula> getMatriculaByAlumno(String id){
 		
