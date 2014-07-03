@@ -214,7 +214,11 @@ public class Caster {
 		System.out.println("1111 trabajo :"+model.getId() + " "+model.getNombre());
 		TrabajoBean trabajo = new TrabajoBean();
 		trabajo.setId(model.getId());
-		trabajo.setFechaMax(Formatter.stringToDate(model.getFechaMaxima()));
+		try {
+			trabajo.setFechaMax(Formatter.stringToDate(model.getFechaMaxima()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		trabajo.setNombre(model.getNombre());
 		trabajo.setIntegrantesMax(model.getIntegrantesMaximo());
 		trabajo.setRuta(model.getRuta());
