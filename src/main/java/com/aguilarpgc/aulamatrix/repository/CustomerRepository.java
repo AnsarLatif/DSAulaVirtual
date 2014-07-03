@@ -3,7 +3,6 @@ package com.aguilarpgc.aulamatrix.repository;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

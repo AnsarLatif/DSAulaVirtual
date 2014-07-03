@@ -36,11 +36,9 @@
                 <value>com.aguilarpgc.aulamatrix.model.CursoGrupoTipo</value>
                 <value>com.aguilarpgc.aulamatrix.model.Tipo</value>
                 <value>com.aguilarpgc.aulamatrix.model.Matricula</value>
-                <!-- <value>com.aguilarpgc.aulamatrix.model.Documento</value>
+                <value>com.aguilarpgc.aulamatrix.model.Documento</value>
                 <value>com.aguilarpgc.aulamatrix.model.Nota</value>
-                <value>com.aguilarpgc.aulamatrix.model.Tipo</value>
-                <value>com.aguilarpgc.aulamatrix.model.Trabajo</value>
-                <value>com.aguilarpgc.aulamatrix.model.Usuario</value> -->
+                <value>com.aguilarpgc.aulamatrix.model.Trabajo</value><!--  -->
             </list>
         </property>
         <property name="hibernateProperties">

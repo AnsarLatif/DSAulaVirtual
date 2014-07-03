@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.CursoGrupo;
 import com.aguilarpgc.aulamatrix.model.Matricula;
+import com.aguilarpgc.aulamatrix.model.Nota;
 import com.aguilarpgc.aulamatrix.repository.CursoGrupoRepository;
 import com.aguilarpgc.aulamatrix.repository.CursoRepository;
 import com.aguilarpgc.aulamatrix.repository.MatriculaRepository;
+import com.aguilarpgc.aulamatrix.repository.NotaRepository;
 import com.aguilarpgc.aulamatrix.repository.UsuarioRepository;
 
 @Service
@@ -28,6 +30,9 @@ public class AlumnoLogic {
 
 	@Autowired
 	CursoRepository cursoRepository;
+	
+	@Autowired
+	NotaRepository notaRepository;
 
 	public List<Curso> listCursosMatriculados(){
 		
@@ -56,6 +61,11 @@ public class AlumnoLogic {
 		}
 		
 		return matriculado;
+	}
+	
+	public List<Nota> listNotasTrabajo(){
+		
+		return notaRepository.notasByUser(usuarioRepository.getCurrentUser().getId());
 	}
 	
 }

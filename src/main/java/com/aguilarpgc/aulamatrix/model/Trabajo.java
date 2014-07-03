@@ -30,6 +30,9 @@ public class Trabajo implements Serializable
 
 	@Column(name="TIPO")
 	private String tipo;
+	
+	@Column(name="ID_CURSO_GRUPO_TIPO")
+	private Integer idCursoGrupoTipo;
 
 	public Integer getId() {
 		return id;
@@ -81,5 +84,13 @@ public class Trabajo implements Serializable
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getIdCursoGrupoTipo() {
+		return idCursoGrupoTipo;
+	}
+
+	public void setIdCursoGrupoTipo(Integer idCursoGrupoTipo) {
+		this.idCursoGrupoTipo = idCursoGrupoTipo;
 	}
 }

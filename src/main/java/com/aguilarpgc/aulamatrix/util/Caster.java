@@ -11,6 +11,7 @@ import com.aguilarpgc.aulamatrix.model.Currency;
 import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.Customer;
 import com.aguilarpgc.aulamatrix.model.Estado;
+import com.aguilarpgc.aulamatrix.model.Nota;
 import com.aguilarpgc.aulamatrix.model.Usuario;
 import com.aguilarpgc.aulamatrix.repository.BillRepository;
 import com.aguilarpgc.aulamatrix.view.BillBean;
@@ -19,6 +20,7 @@ import com.aguilarpgc.aulamatrix.view.CurrencyBean;
 import com.aguilarpgc.aulamatrix.view.CursoBean;
 import com.aguilarpgc.aulamatrix.view.CustomerBean;
 import com.aguilarpgc.aulamatrix.view.EstadoBean;
+import com.aguilarpgc.aulamatrix.view.NotaBean;
 import com.aguilarpgc.aulamatrix.view.UsuarioBean;
 
 public class Caster {
@@ -193,6 +195,15 @@ public class Caster {
 		estado.setDescripcion(model.getDescripcion());
 		System.out.println("2222 estado :"+estado.getId() + " "+estado.getDescripcion());
 		return estado;
+	}
+	
+	public static NotaBean notaModelToBean(Nota model){
+		System.out.println("1111 nota :"+model.getId() + " "+model.getDocumento());
+		NotaBean nota = new NotaBean();
+		nota.setId(model.getId());
+		nota.setNota(model.getNota());
+		System.out.println("2222 nota :"+nota.getId() + " "+nota.getDocumento());
+		return nota;
 	}
 	
 }

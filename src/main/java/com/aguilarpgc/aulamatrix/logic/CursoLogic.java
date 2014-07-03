@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aguilarpgc.aulamatrix.model.Curso;
-import com.aguilarpgc.aulamatrix.repository.CursoRepositoy;
+import com.aguilarpgc.aulamatrix.repository.CursoRepository;;
 
 @Service
 public class CursoLogic {
 
 	@Autowired
-	CursoRepositoy cursoRepository;
+	CursoRepository cursoRepository;
 	
 	public Curso getCurso(Integer id){
 		return cursoRepository.getCurso(id);

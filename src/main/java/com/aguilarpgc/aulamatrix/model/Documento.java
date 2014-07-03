@@ -22,13 +22,11 @@ public class Documento implements Serializable
 	@Column(name="RUTA")
 	private String ruta;
 
-	@ManyToOne
-	@JoinColumn(name="ID_TRABAJO")
+	@Column(name="ID_TRABAJO")
 	private Integer trabajo;
 
-	@ManyToOne
-	@JoinColumn(name="ID_USUARIO")
-	private Integer usuario;
+	@Column(name="ID_USUARIO")
+	private String idUsuario;
 
 	public Integer getId() {
 		return id;
@@ -66,12 +64,12 @@ public class Documento implements Serializable
 		this.trabajo = trabajo;
 	}
 
-	public Integer getUsuario() {
-		return usuario;
+	public String getUsuario() {
+		return idUsuario;
 	}
 
-	public void setUsuario(Integer usuario) {
-		this.usuario = usuario;
+	public void setUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 }

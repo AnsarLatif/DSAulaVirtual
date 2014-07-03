@@ -1,29 +1,60 @@
 package com.aguilarpgc.aulamatrix.controller;
 
-import org.omg.CORBA.Request;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aguilarpgc.aulamatrix.logic.AlumnoLogic;
+import com.aguilarpgc.aulamatrix.logic.DocumentoLogic;
+import com.aguilarpgc.aulamatrix.model.Curso;
+import com.aguilarpgc.aulamatrix.model.Documento;
+import com.aguilarpgc.aulamatrix.model.Nota;
+import com.aguilarpgc.aulamatrix.util.Caster;
+import com.aguilarpgc.aulamatrix.view.NotaBean;
 
 @Controller
 @RequestMapping(value = "admin/alumno")
 public class AlumnoController {
-	
+
 	@Autowired
 	AlumnoLogic alumnoLogic;
+
+	@Autowired
+	DocumentoLogic documentoLogic;
 	
 	@RequestMapping(value = "/cursos_matriculados", method = RequestMethod.GET)
 	public String cursosMatriculados(ModelMap modelMap){
 		
-		modelMap.addAttribute("cursos", alumnoLogic.listCursosMatriculados());
+		List<Curso> cursosList = alumnoLogic.listCursosMatriculados();
+		for(Curso curso : cursosList){
+			System.out.println("Curso: "+curso.getNombre());
+		}
+		modelMap.addAttribute("cursos", cursosList);
 		
 		return "/curso/list";
 	}
-	
+
+	@RequestMapping(value = "/notas_trabajos", method = RequestMethod.GET)
+	public String notasTrabajos(ModelMap modelMap){
+
+		List<Nota> notas = alumnoLogic.listNotasTrabajo();
+		List<NotaBean> notasBeans = new ArrayList<NotaBean>();
+		for(Nota nota : notas){
+			NotaBean notaBean = Caster.notaModelToBean(nota);
+			Documento documento = documentoLogic.getDocumento(nota.getDocumento());
+			
+			notaBean.setNombreDocumento(documento.getNombre());
+			notaBean.setNombreTrabajo(documentoLogic.getTrabajo(documento).getNombre());
+			
+			notasBeans.add(notaBean);
+		}
+		modelMap.addAttribute("notas", notasBeans);
+		return "/curso/list";
+	}
 	
 }

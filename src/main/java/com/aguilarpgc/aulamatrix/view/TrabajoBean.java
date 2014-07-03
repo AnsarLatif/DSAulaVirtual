@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class TrabajoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	
+	Integer id;
+	String descripcion;
 	
 }
