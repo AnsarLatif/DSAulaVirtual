@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aguilarpgc.aulamatrix.logic.AlumnoLogic;
-import com.aguilarpgc.aulamatrix.model.Matricula;
+import com.aguilarpgc.aulamatrix.model.Curso;
 
 @Controller
 @RequestMapping(value = "admin/alumno")
@@ -22,8 +22,8 @@ public class AlumnoController {
 	public String cursosMatriculados(ModelMap modelMap){
 		
 		System.out.println("aaa");
-		for(Matricula m : alumnoLogic.listCursosMatriculados()){
-			System.out.println("!!! "+m.getIdCursoGrupo());
+		for(Curso c : alumnoLogic.listCursosMatriculados()){
+			System.out.println("!!! "+c.getNombre());
 		}
 		System.out.println("bbb");
 		

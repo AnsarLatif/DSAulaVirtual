@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aguilarpgc.aulamatrix.model.CursoGrupo;
 import com.aguilarpgc.aulamatrix.model.Matricula;
 
 @Repository
@@ -17,11 +18,13 @@ public class MatriculaRepository extends HibernateRepository{
 		return (Matricula) getSession().get(Matricula.class, id);
 	}
 	
-	
 	public List<Matricula> getListMatricula(String id) {
 		
 		Criteria criteria = getSession().createCriteria(Matricula.class);
 		criteria.add(Restrictions.eq("idUsuario", id));
 		return criteria.list();
 	}
+	
+	
+	
 }
