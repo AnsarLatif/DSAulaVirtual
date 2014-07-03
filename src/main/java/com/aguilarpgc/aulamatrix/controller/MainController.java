@@ -10,11 +10,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aguilarpgc.aulamatrix.logic.CursoGrupoTipoLogic;
 import com.aguilarpgc.aulamatrix.logic.UsuarioLogic;
 import com.aguilarpgc.aulamatrix.logic.PerfilLogic;
+import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
 import com.aguilarpgc.aulamatrix.model.Modulo;
 import com.aguilarpgc.aulamatrix.model.Perfil;
 import com.aguilarpgc.aulamatrix.model.Usuario;
+import com.aguilarpgc.aulamatrix.repository.CursoGrupoTipoRepository;
 
 @Controller
 @RequestMapping(value="/admin")	
@@ -25,6 +28,9 @@ public class MainController {
 	
 	@Autowired
 	PerfilLogic perfilLogic;
+
+	@Autowired
+	CursoGrupoTipoLogic cursoGrupoTipoLogic;
 	
 	@RequestMapping(value="/index", method= RequestMethod.GET)
     public String dashboard(ModelMap modelMap) {
