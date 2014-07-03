@@ -16,7 +16,7 @@ public class CursoGrupoTipoRepository extends HibernateRepository{
 	
 	public List<CursoGrupoTipo> listCursoByProfesor(Usuario usuario){
 		Criteria criteria = getSession().createCriteria(CursoGrupoTipo.class);
-		criteria.add(Restrictions.eq("id_usuario", usuario.getId()));
+		criteria.add(Restrictions.eq("idUsuario", usuario.getId()));
 		return criteria.list();
 	}
 

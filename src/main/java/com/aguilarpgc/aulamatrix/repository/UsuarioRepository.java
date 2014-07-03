@@ -16,7 +16,7 @@ public class UsuarioRepository{
 
     @Autowired
     private SessionFactory sessionFactory;
-
+    
 	public Usuario getUsuarioByUser(String user) {
 		Session session = sessionFactory.getCurrentSession();
 
@@ -29,18 +29,19 @@ public class UsuarioRepository{
 	
 	public void updateUsuario(Usuario usuario) {
 	    Session session = sessionFactory.getCurrentSession();
-
+		
 	    session.saveOrUpdate(usuario);
     }
 
-	public Usuario getUsuario(Integer idUsuario){
-		Session session = sessionFactory.getCurrentSession();
-		
+	public Usuario getUsuario(String idUsuario){
+	    Session session = sessionFactory.getCurrentSession();
+
 		return (Usuario) session.get(Usuario.class, idUsuario);
 	}
 	    
 	public List<Usuario> listUsuario(){
 		Session session = sessionFactory.getCurrentSession();
+
 		Criteria criteria = session.createCriteria(Usuario.class);
 		return criteria.list();
 	}

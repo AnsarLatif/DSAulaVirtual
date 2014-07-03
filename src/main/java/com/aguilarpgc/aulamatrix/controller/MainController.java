@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.aguilarpgc.aulamatrix.logic.UsuarioLogic;
 import com.aguilarpgc.aulamatrix.logic.PerfilLogic;
 import com.aguilarpgc.aulamatrix.model.Modulo;
 import com.aguilarpgc.aulamatrix.model.Perfil;
+import com.aguilarpgc.aulamatrix.model.Usuario;
 
 @Controller
 @RequestMapping(value="/admin")	
@@ -26,11 +28,11 @@ public class MainController {
 	
 	@RequestMapping(value="/index", method= RequestMethod.GET)
     public String dashboard(ModelMap modelMap) {
-		
-		System.out.println("******************");
-		System.out.println("PERMISO HOLA " + usuarioLogic.getUsuario(1).getPerfil().getId());
-		Perfil perfil = perfilLogic.getPerfil(usuarioLogic.getUsuario(1).getPerfil().getId());
-		System.out.println("PERFIL "+perfil.getId()+" "+perfil.getDescripcion());
+
+        String usuarioName = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario profesor = usuarioLogic.getUsuarioByUsername(usuarioName);
+
+		Perfil perfil = perfilLogic.getPerfil(profesor.getPerfil().getId());
 		
 		/*List<Modulo> modulos = new ArrayList<Modulo>();
 		

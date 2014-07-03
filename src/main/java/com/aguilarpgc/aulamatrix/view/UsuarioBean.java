@@ -9,7 +9,7 @@ public class UsuarioBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	Integer id;
+	String id;
 	String usuario;
 	@NotNull
     @Size(min = 3, max = 12, message = "La clave ingresada debe tener un máximo de 12 caracteres.")
@@ -21,10 +21,10 @@ public class UsuarioBean implements Serializable{
 	String estado;
 	String perfil;
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getUsuario() {

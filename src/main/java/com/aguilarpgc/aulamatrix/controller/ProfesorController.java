@@ -24,7 +24,7 @@ public class ProfesorController {
 	@Autowired
 	ProfesorLogic profesorLogic;
 	
-	@RequestMapping(value = "/cursos_asisgnados", method = RequestMethod.GET)
+	@RequestMapping(value = "/cursos_asignados", method = RequestMethod.GET)
 	public String listCursos (ModelMap modelMap){
 
         List<CursoGrupoTipo> cursos = profesorLogic.listCurso();

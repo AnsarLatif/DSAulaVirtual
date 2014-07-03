@@ -17,10 +17,14 @@ public class UsuarioLogic {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
-	public Usuario getUsuario(Integer id){
+	public Usuario getUsuario(String id){
 		return usuarioRepository.getUsuario(id);
 	}
 	
+	public Usuario getUsuarioByUsername(String id){
+		return usuarioRepository.getUsuarioByUser(id);
+	}
+		
 	public List<Usuario> listUsuario() {
       List<Usuario> listUsuario = usuarioRepository.listUsuario();
 

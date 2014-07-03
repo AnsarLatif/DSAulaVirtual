@@ -13,7 +13,7 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="ID_USUARIO")
-	private Integer id;
+	private String id;
 
 	@Column(name="USUARIO")
 	private String usuario;
@@ -38,11 +38,11 @@ public class Usuario implements Serializable{
 	@JoinColumn(name="ID_PERFIL")
 	Perfil perfil;
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -95,6 +95,7 @@ public class Usuario implements Serializable{
 	}
 
 	public Perfil getPerfil() {
+		System.out.println("*****perfil");
 		return perfil;
 	}
 

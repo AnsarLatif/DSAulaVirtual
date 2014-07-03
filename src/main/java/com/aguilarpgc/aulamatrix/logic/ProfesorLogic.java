@@ -24,10 +24,14 @@ public class ProfesorLogic {
         String usuarioName = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario profesor = usuarioRepository.getUsuarioByUser(usuarioName);
         
-        System.out.println("ASDASD 1:"+profesor.getId()+" "+profesor.getNombre());
         List<CursoGrupoTipo> lista = cursoGrupoTipoRepository.listCursoByProfesor(profesor);
-        System.out.println("ASDASD 2:"+profesor.getId()+" "+profesor.getNombre());
+        System.out.println("Profesor :"+profesor.getId()+" "+profesor.getNombre());
 
+        
+        for(CursoGrupoTipo cgt : lista){
+            System.out.println("CGT :"+cgt.getId()+" "+cgt.getIdCursoGrupo());
+        }
+        
 		return lista;
 	}
 	

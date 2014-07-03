@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name="CURSO_GRUPO_TIPO")
 public class CursoGrupoTipo implements Serializable{
@@ -17,14 +16,17 @@ public class CursoGrupoTipo implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	@Column(name="ID_CURSO_GRUPO")
+	@Column(name="ID_CURSO_GRUPO_TIPO")
 	Integer id;
 	
+	@Column(name="ID_CURSO_GRUPO")
+	Integer idCursoGrupo;
+
 	@Column(name="ID_TIPO")
 	Integer idTipo;
-	
-	@Column(name="ID_GRUPO")
-	Integer idGrupo;
+
+	@Column(name="ID_USUARIO")
+	String idUsuario;
 
 	public Integer getId() {
 		return id;
@@ -42,12 +44,20 @@ public class CursoGrupoTipo implements Serializable{
 		this.idTipo = idTipo;
 	}
 
-	public Integer getIdGrupo() {
-		return idGrupo;
+	public Integer getIdCursoGrupo() {
+		return idCursoGrupo;
 	}
 
-	public void setIdGrupo(Integer idGrupo) {
-		this.idGrupo = idGrupo;
+	public void setIdCursoGrupo(Integer idCursoGrupo) {
+		this.idCursoGrupo = idCursoGrupo;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 }

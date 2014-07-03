@@ -10,7 +10,7 @@ public class HibernateRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
