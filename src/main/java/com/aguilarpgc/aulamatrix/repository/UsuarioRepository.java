@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -46,4 +47,10 @@ public class UsuarioRepository{
 		return criteria.list();
 	}
 	
+	
+	public Usuario getCurrentUser(){
+
+        String usuarioName = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getUsuarioByUser(usuarioName);
+	}
 }

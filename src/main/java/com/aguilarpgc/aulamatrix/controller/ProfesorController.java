@@ -9,12 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.aguilarpgc.aulamatrix.logic.CursoLogic;
 import com.aguilarpgc.aulamatrix.logic.ProfesorLogic;
-import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
-import com.aguilarpgc.aulamatrix.util.Caster;
-import com.aguilarpgc.aulamatrix.view.CursoBean;
 
 
 @Controller

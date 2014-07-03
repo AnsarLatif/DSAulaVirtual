@@ -22,7 +22,7 @@ public class ProfesorLogic {
 	
 	public List<CursoGrupoTipo> listCurso(){
         String usuarioName = SecurityContextHolder.getContext().getAuthentication().getName();
-        Usuario profesor = usuarioRepository.getUsuarioByUser(usuarioName);
+        Usuario profesor = usuarioRepository.getCurrentUser();
         
         List<CursoGrupoTipo> lista = cursoGrupoTipoRepository.listCursoByProfesor(profesor);
         System.out.println("Profesor :"+profesor.getId()+" "+profesor.getNombre());
