@@ -13,6 +13,10 @@ import com.aguilarpgc.aulamatrix.model.Trabajo;
 @Transactional
 public class TrabajoRepository extends HibernateRepository{
 	
+	public void addOrUpdateTrabajo(Trabajo trabajo){
+        getSession().saveOrUpdate(trabajo);
+	}
+	
 	public Trabajo getTrabajo(Integer id){
 		
 		return (Trabajo)getSession().get(Trabajo.class, id);
@@ -23,7 +27,6 @@ public class TrabajoRepository extends HibernateRepository{
 		Criteria criteria = getSession().createCriteria(Trabajo.class);
 		criteria.add(Restrictions.eq("idCursoGrupoTipo", id));
 		return criteria.list();
-		
 	}
 
 }

@@ -215,12 +215,12 @@ public class Caster {
 		TrabajoBean trabajo = new TrabajoBean();
 		trabajo.setId(model.getId());
 		try {
-			trabajo.setFechaMax(Formatter.stringToDate(model.getFechaMaxima()));
+			trabajo.setFechaMaxima(Formatter.stringToDate(model.getFechaMaxima()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		trabajo.setNombre(model.getNombre());
-		trabajo.setIntegrantesMax(model.getIntegrantesMaximo());
+		trabajo.setIntegrantesMaximo(model.getIntegrantesMaximo());
 		trabajo.setRuta(model.getRuta());
 		trabajo.setTipo(model.getTipo());
 		trabajo.setCursoGrupoTipoId(model.getIdCursoGrupoTipo());
@@ -229,5 +229,18 @@ public class Caster {
 		return trabajo;
 	}
 	
+	public static Trabajo trabajoBeanToModel(TrabajoBean bean){
+		System.out.println("1111 trabajo :"+bean.getId() + " "+bean.getNombre());
+		Trabajo trabajo = new Trabajo();
+		trabajo.setFechaMaxima(Formatter.dateToString(bean.getFechaMaxima()));
+		trabajo.setNombre(bean.getNombre());
+		trabajo.setIntegrantesMaximo(bean.getIntegrantesMaximo());
+		trabajo.setRuta(bean.getRuta());
+		trabajo.setTipo(bean.getTipo());
+		trabajo.setIdCursoGrupoTipo(bean.getCursoGrupoTipoId());
+
+		System.out.println("2222 trabajo :"+trabajo.getId() + " "+ trabajo.getNombre());
+		return trabajo;
+	}
 	
 }
