@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/base">
+	
+	<div layout:fragment="content">
+	
+		<div id="content-header">
+			<h1>Registrar Trabajo</h1>
+		</div>
+		<form method="post" action="#" th:action="@{/admin/profesor/subir_trabajo}" th:object="${trabajo}" enctype="multipart/form-data" >
+			<input type="hidden" th:field="*{id}" />
+			<div class="row">
+				<div class="col-12">	
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<div class="invoice-content">
+								<ul>
+								<li>
+								<div class="form-group" th:class="${#fields.hasErrors('nombre')}? 'form-group has-error' : 'form-group'">			                               
+									<div class="controls">
+										  <span>Nombre:</span>
+										 <input typs="text" class="form-control input-small" name="nombre" id="nombre" th:field="*{nombre}" /><br/>
+										<span class="help-inline" for="nombre" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+									</div>
+								</div>
+							
+								<div class="form-group" th:class="${#fields.hasErrors('integrantesMaximo')}? 'form-group has-error' : 'form-group'">
+									<div class="controls">
+										<span>Nro max integrantes:</span>
+										<input type="text" class="form-control input-small" name="integrantesMaximo" id="integrantesMaximo" th:field="*{integrantesMaximo}" /><br/>
+										 <span class="help-inline" for="integrantesMaximo" th:if="${#fields.hasErrors('integrantesMaximo')}" th:errors="*{integrantesMaximo}"></span>
+									</div>
+								</div>
+							
+								<div class="form-group" th:class="${#fields.hasErrors('fechaMaxima')}? 'form-group has-error' : 'form-group'">
+									<div class="controls">
+										<span>Fecha M&aacute;xima :</span>
+							 			<input type="text" data-date-format="dd/mm/yyyy" class="datepicker form-control input-small" name="fechaMaxima" id="fechaMaxima" th:field="*{fechaMaxima}" /><br/>
+										<span class="help-inline" for="fechaMaxima" th:if="${#fields.hasErrors('fechaMaxima')}" th:errors="*{fechaMaxima}"></span>
+									</div>
+								</div>
+								<li class="btn btn-inverse">
+									<input type="file" name="trabajo" />
+		      					</li>
+								<button class="btn btn-inverse" type="submit" name="enviar">
+									<span class="text">Subir Trabajo</span>
+								</button>
+								</li>
+								</ul>
+								<br/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+	    <script type="text/javascript">
+	        window.onload=function(){$("#sidebar>ul>li:eq(2)").addClass("active");}
+	    </script>
+	</div>
+</html>

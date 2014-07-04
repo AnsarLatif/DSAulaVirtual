@@ -12,7 +12,9 @@ public class UsuarioBean implements Serializable{
 	String id;
 	String usuario;
 	@NotNull
-    @Size(min = 3, max = 12, message = "La clave ingresada debe tener un máximo de 12 caracteres.")
+    @Size(min = 3, max = 12, 
+      message = "La clave ingresada debe tener un máximo "+
+	  "de 12 caracteres y un minimo de 3 caracteres.")
 	String contrasenia;
 	
 	String nombre;

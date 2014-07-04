@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/base">
+<div id="content-header" layout:fragment="content">
+	<h1>Subir Documento</h1>
+	
+	 <div class="input">
+
+       <select data-dojo-type="dijit.form.ComboBox" id="active"
+         name="active">
+          <option th:each="curso : ${cursos}" th:text="${curso.idCursoGrupo}">Cursos</option>
+        </select>
+     </div>
+	 <div class="input">
+       <select data-dojo-type="dijit.form.ComboBox" id="active"
+         name="active">
+          <option  selected="selected">true</option>
+        </select>
+     </div>
+	
+	
+	
+	<form action="upload" th:action="@{subir_trabajo/}"
+	    method="post" enctype="multipart/form-data">
+       <input type="file" name="trabajo" />
+       <input type="submit" value="Enviar Trabajo"/>
+       <button type="button" class="btn">Cancel</button>
+    </form>
+	
+    <script type="text/javascript">
+        window.onload=function(){$("#sidebar>ul>li:eq(2)").addClass("active");}
+    </script>
+</div>
+</html>
