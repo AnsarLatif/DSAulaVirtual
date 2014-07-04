@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/base">
+<div id="content-header" layout:fragment="content">
+	<h1>Subir Documento</h1>
+	
+	<form action="upload" th:action="@{subir_trabajo/}"
+	    method="post" enctype="multipart/form-data">
+       <input type="file" name="trabajo" />
+       <input type="submit" />
+       
+    </form>
+	
+    <script type="text/javascript">
+        window.onload=function(){$("#sidebar>ul>li:eq(2)").addClass("active");}
+    </script>
+</div>
+</html>

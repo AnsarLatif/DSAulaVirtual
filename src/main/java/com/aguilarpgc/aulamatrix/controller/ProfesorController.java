@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aguilarpgc.aulamatrix.logic.ProfesorLogic;
 import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
@@ -58,6 +60,24 @@ public class ProfesorController {
 		
 		modelMap.addAttribute("trabajos", trabajosBeans);
 
+		return "/curso/list";
+	}
+	
+	
+	@RequestMapping(value = "/subir_trabajo", method = RequestMethod.GET)
+	public String moduloCargarTrabajo(ModelMap modelMap){
+
+		return "/test";
+	}
+	
+	@RequestMapping(value = "/subir_trabajo", method = RequestMethod.POST)
+	public String uploadTrabajo(@RequestParam("trabajo") MultipartFile myFile){
+
+		System.out.println("FILE: "+myFile.getContentType());
+		System.out.println("FILE: "+myFile.getName());
+		System.out.println("FILE: "+myFile.getSize());
+		System.out.println("FILE: "+myFile.getOriginalFilename());
+		
 		return "/curso/list";
 	}
 	
