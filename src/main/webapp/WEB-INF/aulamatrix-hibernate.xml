@@ -34,6 +34,7 @@
                 <value>com.aguilarpgc.aulamatrix.model.Grupo</value>
                 <value>com.aguilarpgc.aulamatrix.model.CursoGrupo</value>
                 <value>com.aguilarpgc.aulamatrix.model.CursoGrupoTipo</value>
+                <value>com.aguilarpgc.aulamatrix.model.Formato</value>
                 <value>com.aguilarpgc.aulamatrix.model.Tipo</value>
                 <value>com.aguilarpgc.aulamatrix.model.Matricula</value>
                 <value>com.aguilarpgc.aulamatrix.model.Documento</value>
