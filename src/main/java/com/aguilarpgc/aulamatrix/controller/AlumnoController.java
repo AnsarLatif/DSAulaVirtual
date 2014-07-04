@@ -28,11 +28,13 @@ import com.aguilarpgc.aulamatrix.model.Modulo;
 import com.aguilarpgc.aulamatrix.model.Nota;
 import com.aguilarpgc.aulamatrix.model.Perfil;
 import com.aguilarpgc.aulamatrix.model.Trabajo;
+import com.aguilarpgc.aulamatrix.model.Usuario;
 import com.aguilarpgc.aulamatrix.util.Caster;
 import com.aguilarpgc.aulamatrix.view.CursoGrupoBean;
 import com.aguilarpgc.aulamatrix.view.DetalleMatriculaBean;
 import com.aguilarpgc.aulamatrix.view.MatriculaBean;
 import com.aguilarpgc.aulamatrix.view.NotaBean;
+import com.aguilarpgc.aulamatrix.view.TareaCorregidaBean;
 import com.aguilarpgc.aulamatrix.view.TrabajoBean;
 import com.aguilarpgc.aulamatrix.view.TrabajoViewBean;
 
@@ -161,7 +163,26 @@ public class AlumnoController extends MasterController{
 	
 	@RequestMapping(value="/consultar_nota",method=RequestMethod.GET)
 	public String initFormConsultarNota(ModelMap modelMap){
-		return "/alumno/consultarNota";
+		List<Nota> notas = alumnoLogic.listNotasTrabajo();
+		List<TareaCorregidaBean> tareas = new ArrayList<TareaCorregidaBean>();
+		
+		for(Nota nota : notas){
+			TareaCorregidaBean tarea = new TareaCorregidaBean();
+			
+			Usuario docente = usuarioLogic.getUsuario(nota.getUsuario());
+			Documento documento = documentoLogic.getDocumento(nota.getDocumento());
+			
+			tarea.setId(nota.getId());
+			tarea.setDocente(docente.getNombre());
+			tarea.setNota(nota.getNota().toString());
+			tarea.setTarea(documento.getNombre());
+			
+			tareas.add(tarea);
+		}
+		
+		modelMap.addAttribute("documentos", tareas);
+		
+		return "/alumno/consultar_nota";
 	}
 	
 	@RequestMapping(value="/consultar_trabajo",method=RequestMethod.GET)

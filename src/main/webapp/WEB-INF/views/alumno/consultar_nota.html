@@ -8,7 +8,7 @@
 		<script src="../../js/tables.js" th:src="@{/js/tables.js}"></script>
 		
 		<div id="content-header">
-			<h1>Lista de Trabajos</h1>
+			<h1>Lista de Notas</h1>
 		</div>
 		
 		<div class="row">
@@ -18,23 +18,22 @@
 						<span class="icon">
 							<i class="glyphicon glyphicon-th"></i>
 						</span>
-						<h5>Lista de Trabajos Asignados</h5>
+						<h5>Lista de Notas por Trabajos</h5>
 					</div>
 					<div class="widget-content nopadding">
 						<table id="tableFilter" class="table table-bordered table-striped table-hover">
 							<thead>
 								<tr>
-									<th>Curso</th>
-									<th>Grupo</th>
-									<th>Tipo</th>
+									<th>Documento</th>
 									<th>Docente</th>
-									<th>Nombre de Trabajo</th>
+									<th>Nota</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="trabajo : ${trabajos}">
-									<td th:text="${curso.curso}"></td>
-									<td th:text="${curso.grupo}"></td>
+								<tr th:each="documento : ${documentos}">
+									<td th:text="${documento.tarea}"></td>
+									<td th:text="${documento.docente}"></td>
+									<td th:text="${documento.nota}"></td>
 								</tr>
 							</tbody>
 						</table>							
