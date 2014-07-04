@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aguilarpgc.aulamatrix.logic.FormatoLogic;
 import com.aguilarpgc.aulamatrix.logic.ProfesorLogic;
 import com.aguilarpgc.aulamatrix.logic.TrabajoLogic;
 import com.aguilarpgc.aulamatrix.model.Curso;
@@ -35,6 +36,9 @@ public class ProfesorController {
 	
 	@Autowired
 	TrabajoLogic trabajoLogic;
+
+	@Autowired
+	FormatoLogic formatoLogic;
 	
 	@RequestMapping(value = "/cursos_asignados", method = RequestMethod.GET)
 	public String listCursos (ModelMap modelMap){
@@ -102,29 +106,15 @@ public class ProfesorController {
 		}
 		
 		System.out.println("FILE: "+myFile.getContentType());
-		System.out.println("FILE: "+myFile.getName());
-		System.out.println("FILE: "+myFile.getSize());
-		System.out.println("FILE: "+myFile.getOriginalFilename());
+		
+		if(!formatoLogic.isValid(myFile.getContentType()))
+			return "/trabajo/formulario_trabajo";
+		
 		String ruta = trabajoLogic.saveFile(myFile);
 		
-		TrabajoBean trabajoBean = new TrabajoBean();
-		trabajoBean.setNombre(trabajo.getNombre());
-		trabajoBean.setFechaMaxima(trabajo.getFechaMaxima());
-		trabajoBean.setIntegrantesMaximo(trabajo.getIntegrantesMaximo());
-		trabajoBean.setTipo(trabajo.getIntegrantesMaximo() == 1 ? "I" : "G");
-		trabajoBean.setRuta(ruta);
-		Trabajo trabajo1 = Caster.trabajoBeanToModel(trabajoBean);
-		
-		return "/curso/list";
-	}
-	
-	@RequestMapping(value = "/subir_archivo", method = RequestMethod.POST)
-	public String uploadTrabajo(@RequestParam("trabajo") MultipartFile myFile){
-
-		System.out.println("FILE: "+myFile.getContentType());
-		System.out.println("FILE: "+myFile.getName());
-		System.out.println("FILE: "+myFile.getSize());
-		System.out.println("FILE: "+myFile.getOriginalFilename());
+		trabajo.setTipo(trabajo.getIntegrantesMaximo() == 1 ? "I" : "G");
+		trabajo.setRuta(ruta);
+		Trabajo trabajo1 = Caster.trabajoBeanToModel(trabajo);
 		
 		return "/curso/list";
 	}
