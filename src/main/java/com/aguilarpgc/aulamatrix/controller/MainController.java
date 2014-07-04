@@ -21,7 +21,7 @@ import com.aguilarpgc.aulamatrix.repository.CursoGrupoTipoRepository;
 
 @Controller
 @RequestMapping(value="/admin")	
-public class MainController {
+public class MainController extends MasterController{
 
 	@Autowired
 	UsuarioLogic usuarioLogic;

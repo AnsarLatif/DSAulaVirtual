@@ -25,6 +25,12 @@ public class Modulo implements Serializable{
 	@Column(name="DESCRIPCION")
 	private String descripcion;
 
+	@Column(name="URL")
+	private String url;
+	
+	@Column(name="ICONO")
+	private String icono;
+	
 	@ManyToMany(mappedBy = "modulo")
 	private Collection<Perfil> perfil = new ArrayList<Perfil>();
 	/*@OneToMany(targetEntity=Permiso.class, mappedBy="modulo")
@@ -54,6 +60,22 @@ public class Modulo implements Serializable{
 		this.perfil = perfil;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getIcono() {
+		return icono;
+	}
+
+	public void setIcono(String icono) {
+		this.icono = icono;
+	}
+
 	/*public List<Permiso> getPermisos() {
 		return permisos;
 	}
@@ -61,5 +83,7 @@ public class Modulo implements Serializable{
 	public void setPermisos(List<Permiso> permisos) {
 		this.permisos = permisos;
 	}*/
+	
+	
 	
 }

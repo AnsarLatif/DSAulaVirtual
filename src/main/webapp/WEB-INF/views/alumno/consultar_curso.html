@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/base">
+	
+	<div layout:fragment="content">
+		
+		<script src="../../js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script src="../../js/tables.js" th:src="@{/js/tables.js}"></script>
+		
+		<div id="content-header">
+			<h1>Lista de Cursos
+				<a href="#" th:href="@{/admin/alumno/matricula}" class="btn btn-danger btn-small" style="float: right; margin-right:20px; margin-top:-20px;"><i class="glyphicon glyphicon-plus-sign"></i> Nueva Matricula</a>
+			</h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-12">
+				<div class="widget-box"> 
+					<div class="widget-title">
+						<span class="icon">
+							<i class="glyphicon glyphicon-th"></i>
+						</span>
+						<h5>Lista de Cursos Matriculados</h5>
+					</div>
+					<div class="widget-content nopadding">
+						<table id="tableFilter" class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Curso</th>
+									<th>Grupo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="curso : ${cursos}">
+									<td th:text="${curso.curso}"></td>
+									<td th:text="${curso.grupo}"></td>
+								</tr>
+							</tbody>
+						</table>							
+					</div>
+				</div>
+			</div>
+		</div>	
+		<script type="text/javascript">
+			window.onload=function(){$("#sidebar>ul>li:eq(2)").addClass("active");}						
+	    </script>
+	</div>
+</html>
