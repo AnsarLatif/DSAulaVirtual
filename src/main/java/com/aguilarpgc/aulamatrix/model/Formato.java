@@ -21,10 +21,10 @@ public class Formato implements Serializable{
 	@Column(name = "ID_FORMATO")
 	Integer id;
 
-	@Column(name = "ID_FORMATO")
+	@Column(name = "DESCRIPCION")
 	String description;
 
-	@Column(name = "ID_FORMATO")
+	@Column(name = "FORMATO")
 	String formato;
 
 	public Integer getId() {

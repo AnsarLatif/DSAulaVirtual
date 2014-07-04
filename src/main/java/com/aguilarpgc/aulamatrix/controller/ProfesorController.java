@@ -119,15 +119,4 @@ public class ProfesorController {
 		return "/curso/list";
 	}
 	
-	@RequestMapping(value = "/subir_archivo", method = RequestMethod.POST)
-	public String uploadTrabajo(@RequestParam("trabajo") MultipartFile myFile){
-
-		System.out.println("FILE: "+myFile.getContentType());
-		System.out.println("FILE: "+myFile.getName());
-		System.out.println("FILE: "+myFile.getSize());
-		System.out.println("FILE: "+myFile.getOriginalFilename());
-		
-		return "/curso/list";
-	}
-	
 }
