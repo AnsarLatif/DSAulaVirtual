@@ -24,5 +24,9 @@ public class CursoGrupoTipoRepository extends HibernateRepository{
 		criteria.add(Restrictions.eq("idCursoGrupo", cursoGrupoId));
 		return criteria.list();
 	}
+	
+	public CursoGrupoTipo getCursoGrupoTipo(Integer id){
+		return (CursoGrupoTipo) getSession().get(CursoGrupoTipo.class, id);
+	}
 
 }

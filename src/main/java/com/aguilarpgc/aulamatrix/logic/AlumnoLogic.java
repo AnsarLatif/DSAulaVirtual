@@ -94,4 +94,9 @@ public class AlumnoLogic {
 		return notaRepository.notasByUser(usuarioRepository.getCurrentUser().getId());
 	}
 	
+	
+	public CursoGrupoTipo getCursoGrupoTipo(Integer id){
+		return cursoGrupoTipoRepository.getCursoGrupoTipo(id);
+	}
+	
 }

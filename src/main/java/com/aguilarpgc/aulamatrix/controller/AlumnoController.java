@@ -17,8 +17,10 @@ import com.aguilarpgc.aulamatrix.logic.AlumnoLogic;
 import com.aguilarpgc.aulamatrix.logic.CursoLogic;
 import com.aguilarpgc.aulamatrix.logic.DocumentoLogic;
 import com.aguilarpgc.aulamatrix.logic.MatriculaLogic;
+import com.aguilarpgc.aulamatrix.logic.UsuarioLogic;
 import com.aguilarpgc.aulamatrix.model.Curso;
 import com.aguilarpgc.aulamatrix.model.CursoGrupo;
+import com.aguilarpgc.aulamatrix.model.CursoGrupoTipo;
 import com.aguilarpgc.aulamatrix.model.Documento;
 import com.aguilarpgc.aulamatrix.model.Grupo;
 import com.aguilarpgc.aulamatrix.model.Matricula;
@@ -32,6 +34,7 @@ import com.aguilarpgc.aulamatrix.view.DetalleMatriculaBean;
 import com.aguilarpgc.aulamatrix.view.MatriculaBean;
 import com.aguilarpgc.aulamatrix.view.NotaBean;
 import com.aguilarpgc.aulamatrix.view.TrabajoBean;
+import com.aguilarpgc.aulamatrix.view.TrabajoViewBean;
 
 @Controller
 @RequestMapping(value = "admin/alumno")
@@ -48,6 +51,9 @@ public class AlumnoController extends MasterController{
 	
 	@Autowired
 	MatriculaLogic matriculaLogic;
+	
+	@Autowired
+	UsuarioLogic usuarioLogic;
 	
 	@ModelAttribute("allCursos")
 	public List<Curso> listCursos(){
@@ -113,28 +119,10 @@ public class AlumnoController extends MasterController{
 	public String agregarMatricula(final CursoGrupo cursoGrupo, final BindingResult bindingResult, final ModelMap modelMap){
 		CursoGrupo cg = cursoLogic.getCursoGrupo(cursoGrupo.getIdGrupo(), cursoGrupo.getIdCurso());
 		Matricula matricula = new Matricula();
-		matricula.setIdUsuario("1"); //cambiar el usuario x defecto
+		matricula.setIdUsuario(usuarioSesionBean.getId().toString()); //cambiar el usuario x defecto
 		matricula.setIdCursoGrupo(cg.getId());
 		matriculaLogic.addMatricula(matricula);
 		
-//		List<Matricula> matriculas = matriculaLogic.getMatriculaByAlumno("1"); //cambiar el usuario x defecto
-//		List<CursoGrupoBean> cursosMatriculados = new ArrayList<CursoGrupoBean>();
-//		for(Matricula matri : matriculas){
-//			CursoGrupo cursogrupo = cursoLogic.getCursoGrupo(matri.getIdCursoGrupo());
-//			Curso curso = cursoLogic.getCurso(cursogrupo.getIdCurso());
-//			Grupo grupo = cursoLogic.getGrupo(cursogrupo.getIdGrupo());
-//			
-//			CursoGrupoBean bean = new CursoGrupoBean();
-//			
-//			bean.setCurso(curso.getNombre());
-//			bean.setGrupo(grupo.getNombre());
-//			
-//			cursosMatriculados.add(bean);
-//		}
-//		
-//		modelMap.addAttribute("cursos", cursosMatriculados);
-//		
-//		return "/alumno/consultar_curso";
 		return initFormConsultarCurso(modelMap);
 	}
 	
@@ -151,7 +139,7 @@ public class AlumnoController extends MasterController{
 	
 	@RequestMapping(value="/consultar_curso",method=RequestMethod.GET)
 	public String initFormConsultarCurso(ModelMap modelMap){
-		List<Matricula> matriculas = matriculaLogic.getMatriculaByAlumno("1"); //cambiar el usuario x defecto
+		List<Matricula> matriculas = matriculaLogic.getMatriculaByAlumno(usuarioSesionBean.getId().toString()); //cambiar el usuario x defecto
 		List<CursoGrupoBean> cursosMatriculados = new ArrayList<CursoGrupoBean>();
 		for(Matricula matri : matriculas){
 			CursoGrupo cursogrupo = cursoLogic.getCursoGrupo(matri.getIdCursoGrupo());
@@ -178,7 +166,29 @@ public class AlumnoController extends MasterController{
 	
 	@RequestMapping(value="/consultar_trabajo",method=RequestMethod.GET)
 	public String initFormConsultarTrabajo(ModelMap modelMap){
-		return "/alumno/consultarTrabjo";
+		List<TrabajoViewBean> trabajosBeans = new ArrayList<TrabajoViewBean>();
+		for(Trabajo trabajo : alumnoLogic.listTrabajos()){
+			TrabajoViewBean trabajob = new TrabajoViewBean();
+			trabajob.setId(trabajo.getId());
+			
+			CursoGrupoTipo cgt = alumnoLogic.getCursoGrupoTipo(trabajo.getIdCursoGrupoTipo());
+			
+			CursoGrupo cursogrupo = cursoLogic.getCursoGrupo(cgt.getIdCursoGrupo());
+			Curso curso = cursoLogic.getCurso(cursogrupo.getIdCurso());
+			Grupo grupo = cursoLogic.getGrupo(cursogrupo.getIdGrupo());
+			
+			
+			trabajob.setCurso(curso.getNombre());
+			trabajob.setGrupo(grupo.getNombre());
+			trabajob.setNomTrabajo(trabajo.getNombre());
+			trabajob.setTipo(cgt.getIdTipo().toString());
+			trabajob.setDocente(usuarioLogic.getUsuario(cgt.getIdUsuario()).getNombre());
+			
+			trabajosBeans.add(trabajob);
+		}
+		
+		modelMap.addAttribute("trabajos", trabajosBeans);
+		return "/alumno/consultar_trabajo";
 	}
 	
 }

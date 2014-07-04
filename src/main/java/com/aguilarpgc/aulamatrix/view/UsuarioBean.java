@@ -16,13 +16,13 @@ public class UsuarioBean implements Serializable{
       message = "La clave ingresada debe tener un máximo "+
 	  "de 12 caracteres y un minimo de 3 caracteres.")
 	String contrasenia;
-	
+
 	String nombre;
 	String apPaterno;
 	String apMaterno;
 	String estado;
 	String perfil;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -71,5 +71,5 @@ public class UsuarioBean implements Serializable{
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-	
+
 }

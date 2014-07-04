@@ -23,7 +23,7 @@ public class CursoLogic {
 	
 	@Autowired
 	CursoGrupoRepository cursoGrupoRepository;
-	
+
 	public Curso getCurso(Integer id){
 		return cursoRepository.getCurso(id);
 	}

@@ -172,13 +172,13 @@ public class Caster {
 	public static UsuarioBean usuarioModelToBean(Usuario model){
 		System.out.println("1111 usuario :"+model.getId() + " "+model.getNombre());
 		UsuarioBean usuario = new UsuarioBean();
-		usuario.setId(model.getId());
-		usuario.setUsuario(model.getUsuario());
-		usuario.setNombre(model.getNombre());
-		usuario.setApPaterno(model.getApellidoPaterno());
-		usuario.setApMaterno(model.getApellidoMaterno());
-		usuario.setEstado(model.getEstado().getDescripcion());
-		usuario.setPerfil(model.getPerfil().getDescripcion());
+//		usuario.setId(model.getId());
+//		usuario.setUsuario(model.getUsuario());
+//		usuario.setNombre(model.getNombre());
+//		usuario.setApPaterno(model.getApellidoPaterno());
+//		usuario.setApMaterno(model.getApellidoMaterno());
+//		usuario.setEstado(model.getEstado().getDescripcion());
+//		usuario.setPerfil(model.getPerfil().getDescripcion());
 		return usuario;
 	}
 	
